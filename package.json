@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "dev": "concurrently \"cd client && npm start\" \"npm run server\""
   },
   "dependencies": {
     "body-parser": "^1.19.0",
