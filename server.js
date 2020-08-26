@@ -20,9 +20,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
-app.use('/reviews', reviewsRouter);
+app.use('/posts/:id/reviews', reviewsRouter);
+app.use('/users', usersRouter);
 
 app.use('*' , ( req , res , next ) => {
   return res.status(404).json({ msg: 'Sorry , page not found'})

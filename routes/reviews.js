@@ -1,38 +1,28 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 
 // Get Reviews
 router.get('/', (req, res, next) => {
   res.send('/Reviews')
 })
 
-// Get Reviews New
-router.get('/new', (req, res, next) => {
-  res.send('/Reviews/new')
-})
-
-// Create Reviews
+// Create Reviews New
 router.post('/', (req, res, next) => {
-  res.send('/CREATE Reviews')
+  res.send('/Create reviews')
 })
 
-// Get 1 Post : id
-router.get('/:id', (req, res, next) => {
+// Get 
+router.get('/:review_id/edit', (req, res, next) => {
   res.send('SHOW /Reviews/:id')
 })
 
-// EDIT Reviews
-router.get('/:id/edit', (req, res, next) => {
-  res.send('EDIT /Reviews/:id/edit')
-})
-
 // Put Reviews
-router.put('/:id', (req, res, next) => {
+router.put('/:review_id', (req, res, next) => {
   res.send('Update /Reviews/:id')
 })
 
 // Delete Reviews
-router.delete('/:id', (req, res, next) => {
+router.delete('/:review_id', (req, res, next) => {
   res.send('DELETE /Reviews/:id')
 })
 
