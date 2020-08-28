@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { postRegister } = require("../controllers/Auth.js");
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -10,10 +11,7 @@ router.get('/register', (req, res, next) => {
   return res.status(200).json({ msg: 'Get User registered' })
 });
 
-
-router.post('/register', (req, res, next) => {
-  return res.status(200).json({ msg: 'User registered' })
-});
+router.post('/register', postRegister);
 
 // Get logged in user
 router.get('/login', (req, res, next) => {
