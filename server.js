@@ -42,6 +42,8 @@ app.use('*' , ( req , res , next ) => {
   return res.status(404).json({ msg: 'Sorry , page not found'})
 })
 
-app.listen(process.env.PORT)
+app.listen(process.env.PORT, () => {
+  console.log(`Server running: ${process.env.PORT}`)
+});
 
 module.exports = app;
