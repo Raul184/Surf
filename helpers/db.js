@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const db = async () => {
   try {
+    console.log('LOGGGG', process.env.URI)
     await mongoose.connect(process.env.URI, {
       useCreateIndex: true,
       useNewUrlParser: true,
