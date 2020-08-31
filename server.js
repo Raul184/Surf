@@ -10,9 +10,11 @@ const session = require('express-session');
 const indexRouter = require('./routes/index');
 const postsRouter = require('./routes/posts');
 const reviewsRouter = require('./routes/reviews');
-
 const db = require('./helpers/db')
+require('dotenv').config()
+
 const app = express();
+db();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -27,7 +29,6 @@ app.use(session({
   saveUninitialized: true,
   // cookie: {secure: true}
 }))
-db();
 
 passport.use(User.createStrategy())
 passport.serializeUser(User.serializeUser())

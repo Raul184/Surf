@@ -1,7 +1,15 @@
+// Using mongoose to plug in my DB
+const mongoose = require('mongoose');
+
 const db = async () => {
   try {
-    await new MongoClient(uri, { useNewUrlParser: true });
-    console.log('DB connected')  
+    await mongoose.connect(process.env.URI, {
+      useCreateIndex: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
+    });
+    console.log('Mongo DB connected')  
   } 
   catch (err) {
     console.log('Error on DB Connection')
