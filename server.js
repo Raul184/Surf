@@ -11,6 +11,7 @@ const indexRouter = require('./routes/index');
 const postsRouter = require('./routes/posts');
 const reviewsRouter = require('./routes/reviews');
 
+const db = require('./helpers/db')
 const app = express();
 
 app.use(logger('dev'));
@@ -26,8 +27,9 @@ app.use(session({
   saveUninitialized: true,
   // cookie: {secure: true}
 }))
-passport.use(User.createStrategy())
+db();
 
+passport.use(User.createStrategy())
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser());
 
@@ -39,5 +41,6 @@ app.use('*' , ( req , res , next ) => {
   return res.status(404).json({ msg: 'Sorry , page not found'})
 })
 
-app.listen(4000)
+app.listen(process.env.PORT)
+
 module.exports = app;
