@@ -1,9 +1,9 @@
 // Using mongoose to plug in my DB
 const mongoose = require('mongoose');
 
-const db = () => {
+const db = async () => {
   try {
-    mongoose.connect(process.env.URI, {
+    await mongoose.connect(process.env.URI, {
       useCreateIndex: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
