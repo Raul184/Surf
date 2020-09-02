@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { postRegister } = require("../controllers/Auth.js");
+const { errorHandler } = require('../middleware/index')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -11,7 +12,7 @@ router.get('/register', (req, res, next) => {
   return res.status(200).json({ msg: 'Get User registered' })
 });
 
-router.post('/register', postRegister);
+router.post('/register', errorHandler(postRegister));
 
 // Get logged in user
 router.get('/login', (req, res, next) => {
