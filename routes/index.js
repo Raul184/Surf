@@ -21,11 +21,15 @@ router.get('/login', (req, res, next) => {
 });
 
 // Log In User
-router.post(
-  '/login', 
-  passport.authenticate('local'), 
-  (req, res, next) => {
-  return res.status(200).json({ msg: 'User registered' })
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
+
+// Logout User
+router.get('/logout', (req,res,next) => {
+  req.logout()
+  res.redirect('/')
 });
 
 // Get Profile
