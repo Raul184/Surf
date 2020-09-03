@@ -10,5 +10,9 @@ module.exports = {
     
     await User.register( nueUser ,req.body.password)
     res.redirect('/')
+  },
+  logoutUser(req, res, next){
+    req.logout()
+    res.redirect('/')
   }
 }
