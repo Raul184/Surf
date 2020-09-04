@@ -7,5 +7,11 @@ module.exports = {
       status: 'success',
       posts
     })
+  },
+  newPost(req,res,next){
+    return res.json({
+      status: 'success',
+      msg: 'Easy check'
+    })
   }
 }
