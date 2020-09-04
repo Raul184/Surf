@@ -17,5 +17,12 @@ module.exports = {
   async createPost(req,res,next){
     let post = await Post.create(req.body)
     res.redirect(`/posts/${post.id}`)
+  },
+  async showPost(req, res,next){
+    let singlePost = await Post.findById(req.params.id)
+    return res.status(200).json({
+      status: 'success',
+      singlePost
+    })
   }
 }
