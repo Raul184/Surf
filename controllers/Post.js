@@ -24,5 +24,18 @@ module.exports = {
       status: 'success',
       singlePost
     })
+  },
+  async editPost(req, res, next) {
+    let updatedPost = await Post.findByIdAndUpdate(req.params.id, {
+      title: req.body.title,
+      price: req.body.price,
+      description: req.body.description,
+      location: req.body.location
+    })
+    Post.save(updatedPost)
+    return res.status(200).json({
+      status: 'success',
+      updatedPost
+    })
   }
 }

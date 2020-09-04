@@ -5,7 +5,8 @@ const {
   getPosts , 
   newPost, 
   createPost,
-  showPost
+  showPost,
+  editPost
 } = require('../controllers/Post');
 
 // Get Posts
@@ -21,9 +22,7 @@ router.post('/', errorHandler(createPost))
 router.get('/:id', errorHandler(showPost))
 
 // EDIT Posts
-router.get('/:id/edit', (req, res, next) => {
-  res.send('EDIT /posts/:id/edit')
-})
+router.get('/:id/edit', errorHandler(editPost))
 
 // Put Posts
 router.put('/:id', (req, res, next) => {
