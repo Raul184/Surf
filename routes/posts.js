@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { errorHandler } = require('../middleware/index');
-const { getPosts , newPost} = require('../controllers/Post');
+const { 
+  getPosts , 
+  newPost, 
+  createPost
+} = require('../controllers/Post');
 
 // Get Posts
 router.get('/', errorHandler(getPosts))
@@ -10,9 +14,7 @@ router.get('/', errorHandler(getPosts))
 router.get('/new', newPost)
 
 // Create Posts
-router.post('/', (req, res, next) => {
-  res.send('/CREATE posts')
-})
+router.post('/', errorHandler(createPost))
 
 // Get 1 Post : id
 router.get('/:id', (req, res, next) => {

@@ -13,5 +13,9 @@ module.exports = {
       status: 'success',
       msg: 'Easy check'
     })
+  },
+  async createPost(req,res,next){
+    let post = await Post.create(req.body)
+    res.redirect(`/posts/${post.id}`)
   }
 }
