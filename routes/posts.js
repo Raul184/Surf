@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const upload = multer({'dest': 'uploads/'})
 const { errorHandler } = require('../middleware/index');
 const {
   getPosts,
@@ -17,8 +19,8 @@ router.get('/', errorHandler(getPosts))
 // Get Posts New
 router.get('/new', newPost)
 
-// Create Posts
-router.post('/', errorHandler(createPost))
+// Create Posts       req.file
+router.post("/", upload.array('images', 4), errorHandler(createPost));
 
 // Get 1 Post : id
 router.get('/:id', errorHandler(showPost))
