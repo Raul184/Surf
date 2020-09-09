@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const { errorHandler } = require('../middleware/index');
-const { 
-  getPosts , 
-  newPost, 
+const {
+  getPosts,
+  newPost,
   createPost,
   showPost,
   editPost,
-  updatePost
-} = require('../controllers/Post');
+  updatePost,
+  deletePost
+} = require("../controllers/Post");
 
 // Get Posts
 router.get('/', errorHandler(getPosts))
@@ -29,9 +30,7 @@ router.get('/:id/edit', errorHandler(editPost))
 router.put('/:id', errorHandler(updatePost))
 
 // Delete Posts
-router.delete('/id', (req, res, next) => {
-  res.send('DELETE /posts/:id')
-})
+router.delete('/:id', errorHandler(deletePost))
 
 
 module.exports = router;
