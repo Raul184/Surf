@@ -40,7 +40,6 @@ module.exports = {
   },
   async updatePost(req, res, next){
     const toUpdate = await Post.findByIdAndUpdate(req.params.id, req.body, {new:true})
-    console.log('CHecking bodyParser', req.body)
     res.redirect(`/posts/${toUpdate.id}`) 
   }
 }
