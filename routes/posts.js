@@ -6,7 +6,8 @@ const {
   newPost, 
   createPost,
   showPost,
-  editPost
+  editPost,
+  updatePost
 } = require('../controllers/Post');
 
 // Get Posts
@@ -25,9 +26,7 @@ router.get('/:id', errorHandler(showPost))
 router.get('/:id/edit', errorHandler(editPost))
 
 // Put Posts
-router.put('/:id', (req, res, next) => {
-  res.send('Update /posts/:id')
-})
+router.put('/:id', errorHandler(updatePost))
 
 // Delete Posts
 router.delete('/id', (req, res, next) => {
