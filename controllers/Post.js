@@ -22,7 +22,8 @@ module.exports = {
   },
   async createPost(req, res, next) {
     req.body.images = []
-    for(const file of req.file){
+    console.log('FILE', req.files)
+    for(const file of req.files){
       let image = await cloudinary.v2.uploader.upload(file.path);
       req.body.images.push({
         url: image.secure_url,

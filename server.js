@@ -9,8 +9,8 @@ const passport = require('passport');
 const User = require('./models/User');
 const session = require('express-session');
 const indexRouter = require('./routes/index');
-const postsRouter = require('./routes/posts');
-const reviewsRouter = require('./routes/reviews');
+const postsRouter = require('./routes/postsRoute');
+const reviewsRouter = require('./routes/reviewsRoute');
 const db = require('./helpers/db')
 
 const app = express();
