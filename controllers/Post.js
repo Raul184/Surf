@@ -21,6 +21,14 @@ module.exports = {
     });
   },
   async createPost(req, res, next) {
+    req.body.images = []
+    for(const file of req.file){
+      let image = await cloudinary.v2.uploader.upload(file.path);
+      req.body.images.push({
+        url: image.secure_url,
+        public_id: image.public_id
+      })
+    }
     let post = await Post.create(req.body);
     res.redirect(`/posts/${post.id}`);
   },

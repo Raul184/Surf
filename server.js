@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
@@ -11,17 +12,14 @@ const indexRouter = require('./routes/index');
 const postsRouter = require('./routes/posts');
 const reviewsRouter = require('./routes/reviews');
 const db = require('./helpers/db')
-require('dotenv').config()
 
 const app = express();
 db();
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '1mb'}));
+app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.use(methodOverride('_method'))
 
 app.use(session({
   secret: 'hang ten dude!',
