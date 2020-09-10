@@ -54,6 +54,9 @@ module.exports = {
     });
   },
   async updatePost(req, res, next) {
+    // handle deletion of existing images
+    
+    // handle upload of new images
     const toUpdate = await Post.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
