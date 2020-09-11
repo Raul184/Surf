@@ -84,11 +84,9 @@ module.exports = {
     post.description = req.body.description;
     post.price = req.body.price;
     post.location = req.body.location;
-      
-    const toUpdate = await Post.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    res.redirect(`/posts/${toUpdate.id}`);
+
+    post.save();
+    res.redirect(`/posts/${post.id}`);
   },
   async deletePost(req, res, next) {
     await Post.findByIdAndRemove(req.params.id);
