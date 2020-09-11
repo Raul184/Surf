@@ -22,7 +22,6 @@ module.exports = {
   },
   async createPost(req, res, next) {
     req.body.images = []
-    console.log('FILE', req.files)
     for(const file of req.files){
       let image = await cloudinary.v2.uploader.upload(file.path);
       req.body.images.push({
@@ -55,8 +54,37 @@ module.exports = {
   },
   async updatePost(req, res, next) {
     // handle deletion of existing images
-    
+    let post = await Post.findById(req.params.id)
+    // check imgs for deletion
+    if(req.body.deleteImages && req.body.deleteImages.length){
+      let deletion = req.body.deleteImages;
+      for (const img_id of deletion){
+        //cloudinary
+        await cloudinary.v2.uploader.destroy(img_id)
+        //mongoDB
+        for(const image of post.images){
+          if(image.public_id === public_id){
+            let index = post.images.indexOf(image)
+            post.images.splice(index, 1)
+          }
+        }
+      }
+    }
     // handle upload of new images
+    if(req.files){
+      for (const file of req.files) {
+        let image = await cloudinary.v2.uploader.upload(file.path);
+        post.images.push({
+          url: image.secure_url,
+          public_id: image.public_id,
+        });
+      }
+    }
+    post.title = req.body.title
+    post.description = req.body.description;
+    post.price = req.body.price;
+    post.location = req.body.location;
+      
     const toUpdate = await Post.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
